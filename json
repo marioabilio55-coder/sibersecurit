@@ -1,0 +1,54 @@
+{
+  "name": "DeepHat Pro Environment",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "features": {
+    // Docker-in-Docker: Permite rodar Docker dentro do seu container de dev
+    "ghcr.io/devcontainers/features/docker-in-docker:1": {},
+    // Git: Garante que o Git esteja configurado corretamente
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        // Configurações de linting e formatação automáticas
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": "explicit"
+        },
+        "python.linting.enabled": true,
+        "python.formatting.provider": "black",
+        "terminal.integrated.fontSize": 14,
+        "terminal.integrated.cursorStyle": "block"
+      },
+      "extensions": [
+        // Desenvolvimento Web & Backend
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ms-azuretools.vscode-docker",
+        
+        // Ferramentas de Engenharia e Segurança
+        "ritwickdey.lldb", // Debugging avançado
+        "formulahendry.deep-scan", // Análise de código
+        "christian-kohler.path-intellisense", // Autocomplete de caminhos
+        "humao.rest-client", // Para testar APIs (alternativa ao Postman)
+        
+        // UI/UX para produtividade
+        "usernamehw.errorlens", // Mostra erros de sintaxe direto na linha
+        "formulahendry.deep-scan"
+      ]
+    }
+  },
+  // Portas padrão que você provavelmente usará
+  "forwardPorts": [3000, 5000, 8000, 8080, 5432],
+  
+  // Comandos executados após a criação do container
+  "postCreateCommand": "npm install -g typescript ts-node && pip3 install --upgrade pip && pip3 install black",
+  
+  // Define o usuário padrão para evitar problemas de permissão de arquivos no host
+  "remoteUser": "vscode"
+}
