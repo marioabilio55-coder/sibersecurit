@@ -1,0 +1,2 @@
+nmap -sV -sC -T4 <ip_do_alvo>
+gobuster dir -u http://<alvo> -w /caminho/wordlist.txt
